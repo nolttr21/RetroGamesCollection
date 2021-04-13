@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-family: sans-serif;
+    margin-top: 50px;
+  }
+  
+  body {
+    text-align: center;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  h2{
+    text-align: center;
+  }
+  .game-container {
+    width: 500px;
+    height: 500px;
+    background-color: black;
+    margin: 50px auto;
+    border: 10px inset grey;
+    position: relative;
+  }
+  
+  .snake-section {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    background-color: white;
+  }
+  .one {
+    top: 240px;
+    left: 260px;
+  }
+  .two {
+    top: 240px;
+    left: 250px;
+  }
+  .three {
+    top: 240px;
+    left: 240px;
+  }
+  
+  .apple {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+  }
+  
+  .game-over {
+    color: white;
+    margin-top: 50%;
+    display: none;
+  }
+  
+  .reset-game {
+    width: auto;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 20px;
+    display: none;
+  }
