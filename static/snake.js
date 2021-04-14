@@ -63,6 +63,9 @@ const changeDirection = (e) => {
             xMove = 0;
             yMove = 10;
         }
+
+        //remove event listener, and add it back in 75 milliseconds to prevent the snake from doing a 180 (most of the time)
+        //100 milliseconds caused too many missed inputs
         window.removeEventListener('keydown', changeDirection);
         keyTimeout = setTimeout(() => {
             window.addEventListener('keydown', changeDirection);
@@ -91,7 +94,8 @@ const moveSnake = () => {
         positions.pop();
         snake.unshift(lastSnake);
         snake.pop();
-
+        
+        //only move the snake every 100 milliseconds
         moveTime = setTimeout(() => {
             moveSnake();
         }, 100);
@@ -124,23 +128,32 @@ const longerSnake = () => {
 
 //function to put the apple in a random spot when the snake eats one (and at the beginning of the game)
 const newApple = () => {
+    //set random coordinates for the apple
     appleX = Math.floor(Math.random() * 50) * 10;
     appleY = Math.floor(Math.random() * 50) * 10;
+    
+    //recalculate if the apple is right on the edge
     if (appleX == 0 || appleX == 490) {
         appleX = Math.floor(Math.random() * 50) * 10;
     } if (appleY == 0 || appleY == 490) {
         appleY = Math.floor(Math.random() * 50) * 10;
     }
+
+    //reset function if the apple spawns on top of the snake
     for (let position of positions) {
         if (appleX == position.xPos && appleY == position.yPos) {
             newApple();
         }
     }
+
+    //set the apple's coordinates in the HTML
     apple.style.left = appleX + 'px';
     apple.style.top = appleY + 'px';
 }
 
 //create event handler to run changeDirection on button presses
 window.addEventListener('keydown', changeDirection);
+
+//call functions to initiate the game
 moveSnake();
 newApple();
