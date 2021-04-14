@@ -74,15 +74,13 @@ const changeDirection = (e) => {
 const moveSnake = () => {
     //only move if the player has not lost the game
     if (!gameOver) {
-        //pull positions and snake sections from arrays
-
         //check if the snake ate an apple
         didEatApple();
 
+        //pull positions and snake sections from arrays
         let firstPos = positions[0];
         let lastPos = positions[positions.length - 1];
         let lastSnake = snake[snake.length - 1];
-        console.log(xMove, yMove);
 
         //set new coordinates on the last snake section, and shift it to the front of the array
         lastPos.xPos = firstPos.xPos + xMove;
@@ -105,6 +103,7 @@ const didEatApple = () => {
     let snakeHead = positions[0];
     if (snakeHead.xPos == appleX && snakeHead.yPos == appleY) {
         longerSnake();
+        newApple();
     }
 }
 
@@ -121,9 +120,27 @@ const longerSnake = () => {
     newSnakeSection.style.left = lastPos.xPos + 'px';
     positions.push({xPos: lastPos.xPos, yPos: lastPos.yPos});
     gameArea.appendChild(newSnakeSection);
+}
 
+//function to put the apple in a random spot when the snake eats one (and at the beginning of the game)
+const newApple = () => {
+    appleX = Math.floor(Math.random() * 50) * 10;
+    appleY = Math.floor(Math.random() * 50) * 10;
+    if (appleX == 0 || appleX == 490) {
+        appleX = Math.floor(Math.random() * 50) * 10;
+    } if (appleY == 0 || appleY == 490) {
+        appleY = Math.floor(Math.random() * 50) * 10;
+    }
+    for (let position of positions) {
+        if (appleX == position.xPos && appleY == position.yPos) {
+            newApple();
+        }
+    }
+    apple.style.left = appleX + 'px';
+    apple.style.top = appleY + 'px';
 }
 
 //create event handler to run changeDirection on button presses
 window.addEventListener('keydown', changeDirection);
 moveSnake();
+newApple();
