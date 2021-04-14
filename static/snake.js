@@ -16,6 +16,10 @@ const highScoreText = document.querySelector('high-score');
 //create array to store positions of snake segments
 const positions = [{xPos: 260, yPos: 240}, {xPos: 250, yPos: 240}, {xPos: 240, yPos: 240}];
 
+//position of apple
+let appleX = 0;
+let appleY = 0;
+
 //set up values to be used by the game
 let currentDirection = right;
 let newDirection;
@@ -31,6 +35,8 @@ let yMove = 0;
 const changeDirection = (e) => {
     //set keyPressed to the value of the key that was pressed
     let keyPressed = e.keyCode;
+
+    //only do this every 100 milliseconds to prevent the snake from doing a 180
     //prevent arrow keys from scrolling the page and set new direction
     if (keyPressed == left || keyPressed == up || keyPressed == right || keyPressed == down) {
         e.preventDefault;
@@ -57,6 +63,10 @@ const changeDirection = (e) => {
             xMove = 0;
             yMove = 10;
         }
+        window.removeEventListener('keydown', changeDirection);
+        keyTimeout = setTimeout(() => {
+            window.addEventListener('keydown', changeDirection);
+        }, 75);
     }
 }
 
@@ -65,6 +75,10 @@ const moveSnake = () => {
     //only move if the player has not lost the game
     if (!gameOver) {
         //pull positions and snake sections from arrays
+
+        //check if the snake ate an apple
+        didEatApple();
+
         let firstPos = positions[0];
         let lastPos = positions[positions.length - 1];
         let lastSnake = snake[snake.length - 1];
@@ -84,6 +98,30 @@ const moveSnake = () => {
             moveSnake();
         }, 100);
     }
+}
+
+//function to check if the snake eats an apple
+const didEatApple = () => {
+    let snakeHead = positions[0];
+    if (snakeHead.xPos == appleX && snakeHead.yPos == appleY) {
+        longerSnake();
+    }
+}
+
+//function to make the snake longer
+const longerSnake = () => {
+    //create new snake section in the html
+    const newSnakeSection = document.createElement('div');
+    newSnakeSection.className = 'snake-section';
+    snake.push(newSnakeSection);
+
+    //set position for the new section to be the same as the current last snake section
+    let lastPos = positions[positions.length - 1];
+    newSnakeSection.style.top = lastPos.yPos + 'px';
+    newSnakeSection.style.left = lastPos.xPos + 'px';
+    positions.push({xPos: lastPos.xPos, yPos: lastPos.yPos});
+    gameArea.appendChild(newSnakeSection);
+
 }
 
 //create event handler to run changeDirection on button presses
