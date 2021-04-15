@@ -6,21 +6,31 @@
     <title>Snake Game</title>
   </head>
   <body>
-    <h1>Snake</h1>
-    <div class='game-container'>
-      <div class='snake-section one'></div>
-      <div class='snake-section two'></div>
-      <div class='snake-section three'></div>
-      <div class='apple'></div>
-      <h2 class='game-over'>Game Over!</h2>
+    <h1 class='title'>Snake</h1>
+    <div class='full-game-container'>
+      <div class='title-game-container'>
+        <div class='game-container'>
+          <div class='snake-section one'></div>
+          <div class='snake-section two'></div>
+          <div class='snake-section three'></div>
+          <img class='apple' src='../static/images/apple.png' />
+          <h2 class='game-over'>Game Over!</h2>
+        </div>
+      </div>
+      <div class='score-reset-container'>
+        <div class='scoreboard'>
+          <div class='current-score'>
+            <p>Score:</p>
+            <p class='score'> 0</p>
+          </div>
+          <div class='highscore'>
+            <p>High Score:</p>
+            <p class='high-score'> 0</p>
+          </div>
+        </div>
+        <button class='reset-game'>Play Again</button>
+      </div>
     </div>
-    <div class=scoreboard>
-      <h1 >Score:</h1>
-      <h2 class=score>0</h2>
-      <h1>High Score:</h1>
-      <h2 class='high-score'>0</h2>
-    </div>
-    <button class='reset-game'>Play Again</button>
     <script src="../static/snake.js"></script>
   </body>
 </html>

@@ -10,28 +10,40 @@
   
   body {
     text-align: center;
+    background-color: grey;
   }
   
   h1 {
     text-align: center;
   }
-  h2{
-    text-align: center;
+
+  .title {
+    font-size: 3rem;
   }
+
+  .full-game-container {
+    margin: auto;
+    display: flex;
+    width: 750px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .game-container {
     width: 520px;
     height: 520px;
-    background-color: black;
+    background-color: lightgray;
     margin: 50px auto;
-    border: 10px inset grey;
+    border: 5px solid black;
     position: relative;
+    overflow: hidden;
   }
   
   .snake-section {
     width: 10px;
     height: 10px;
     position: absolute;
-    background-color: white;
+    background-color: green;
     border-radius: 30%;
   }
   .one {
@@ -50,9 +62,14 @@
   .apple {
     width: 10px;
     height: 10px;
-    background-color: red;
     position: absolute;
-    border-radius: 50%;
+  }
+
+  .current-score, .highscore {
+    display: flex;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0;
   }
   
   .game-over {
