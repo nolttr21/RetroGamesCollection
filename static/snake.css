@@ -19,8 +19,8 @@
     text-align: center;
   }
   .game-container {
-    width: 500px;
-    height: 500px;
+    width: 520px;
+    height: 520px;
     background-color: black;
     margin: 50px auto;
     border: 10px inset grey;
@@ -32,6 +32,7 @@
     height: 10px;
     position: absolute;
     background-color: white;
+    border-radius: 30%;
   }
   .one {
     top: 240px;
@@ -51,6 +52,7 @@
     height: 10px;
     background-color: red;
     position: absolute;
+    border-radius: 50%;
   }
   
   .game-over {
