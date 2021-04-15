@@ -152,11 +152,22 @@ const newApple = () => {
 }
 
 const checkCollision = () => {
+    //loop through positions array
+    //if the first position is the same as any other position, the game is over
 
+    //if the first position has gone past the edge, the game is over
+
+    //if the player loses the game, show game over text and the reset button
+    //maybe add another function for this?
 }
 
 const resetGame = () => {
-    
+    //reset positions array to what it originally was
+    //delete snake sections in snake array except for the first 3
+    //change the 3 snake section positions to those in the positions array
+    //hide game over text
+    //hide reset button
+    //reset score to 0
 }
 
 //create event handler to run changeDirection on button presses
