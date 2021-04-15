@@ -151,6 +151,14 @@ const newApple = () => {
     apple.style.top = appleY + 'px';
 }
 
+const checkCollision = () => {
+
+}
+
+const resetGame = () => {
+    
+}
+
 //create event handler to run changeDirection on button presses
 window.addEventListener('keydown', changeDirection);
 
