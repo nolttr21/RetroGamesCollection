@@ -4,7 +4,7 @@
   }
   
   html {
-    font-family: sans-serif;
+    font-family: monospace;
     margin-top: 50px;
   }
   
@@ -24,8 +24,8 @@
   .full-game-container {
     margin: auto;
     display: flex;
-    width: 750px;
-    justify-content: space-between;
+    width: auto;
+    justify-content: center;
     align-items: center;
   }
 
@@ -63,6 +63,10 @@
     width: 10px;
     height: 10px;
     position: absolute;
+  }
+
+  .score-reset-container {
+    margin-left: 20px;
   }
 
   .current-score, .highscore {
