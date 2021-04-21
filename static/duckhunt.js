@@ -4,6 +4,7 @@ const flyArea = document.querySelector('.fly-area');
 const duckOne = document.querySelector('.red');
 const duckTwo = document.querySelector('.blue');
 const winText = document.querySelector('.win');
+const loseText = document.querySelector('.lose')
 const shotOne = document.querySelector('.one');
 const shotTwo = document.querySelector('.two');
 const shotThree = document.querySelector('.three');
@@ -30,6 +31,8 @@ let shotDuckTwo = false;
 let shotsLeft = 5;
 
 let gameRunning = true;
+let gameLost = false;
+let gameWin = false;
 
 //function to set random positions for ducks to start in
 const setDuckPositions = () => {
@@ -151,6 +154,10 @@ const shoot = () => {
     } else if (shotTwo.style.display == 'none' && shotOne.style.display != 'none') {
         shotOne.style.display = 'none';
     }
+
+    if (shotsLeft == 0 && !gameWin) {
+        gameOver();
+    }
 }
 
 //detect if the player has shot both ducks
@@ -166,7 +173,14 @@ const detectGameWin = () => {
 
 //add elements to the screen to indicate the player has won
 const gameWon = () => {
+    gameWin = true;
     winText.style.display = 'block';
+}
+
+const gameOver = () => {
+    gameLost = true;
+    gameRunning = false;
+    loseText.style.display = 'block';
 }
 
 //set event listeners on ducks to call functions when clicked
