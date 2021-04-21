@@ -1,9 +1,14 @@
 //pull elements from HTML
 const gameArea = document.querySelector('.game-container');
 const flyArea = document.querySelector('.fly-area');
-const duckOne = document.querySelector('.one');
-const duckTwo = document.querySelector('.two');
+const duckOne = document.querySelector('.red');
+const duckTwo = document.querySelector('.blue');
 const winText = document.querySelector('.win');
+const shotOne = document.querySelector('.one');
+const shotTwo = document.querySelector('.two');
+const shotThree = document.querySelector('.three');
+const shotFour = document.querySelector('.four');
+const shotFive = document.querySelector('.five');
 
 //set up variables to be used
 let duckOneTop;
@@ -17,10 +22,12 @@ let duckTwoVerticalMove;
 let duckTwoHorizontalMove;
 
 let duckTimer;
-let winTimer;
+let stopGameTimer;
 
 let shotDuckOne = false;
 let shotDuckTwo = false;
+
+let shotsLeft = 5;
 
 let gameRunning = true;
 
@@ -131,14 +138,29 @@ const deadDuckTwo = () => {
     detectGameWin();
 }
 
+const shoot = () => {
+    shotsLeft -= 1;
+    if (shotFive.style.display != 'none') {
+        shotFive.style.display = 'none';
+    } else if (shotFive.style.display == 'none' && shotFour.style.display != 'none') {
+        shotFour.style.display = 'none';
+    } else if (shotFour.style.display == 'none' && shotThree.style.display != 'none') {
+        shotThree.style.display = 'none';
+    } else if (shotThree.style.display == 'none' && shotTwo.style.display != 'none') {
+        shotTwo.style.display = 'none';
+    } else if (shotTwo.style.display == 'none' && shotOne.style.display != 'none') {
+        shotOne.style.display = 'none';
+    }
+}
+
 //detect if the player has shot both ducks
 const detectGameWin = () => {
     if (shotDuckOne && shotDuckTwo) {
         gameWon();
 
-        winTimer = setTimeout(() => {
+        stopGameTimer = setTimeout(() => {
             gameRunning = false;
-        }, 1000)
+        }, 1500)
     }
 }
 
@@ -147,8 +169,10 @@ const gameWon = () => {
     winText.style.display = 'block';
 }
 
-duckOne.addEventListener('click', deadDuckOne);
-duckTwo.addEventListener('click', deadDuckTwo);
+//set event listeners on ducks to call functions when clicked
+duckOne.addEventListener('mousedown', deadDuckOne);
+duckTwo.addEventListener('mousedown', deadDuckTwo);
+gameArea.addEventListener('mousedown', shoot);
 
 setDuckPositions();
 setDuckTrajectory();
