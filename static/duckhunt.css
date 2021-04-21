@@ -3,6 +3,7 @@
     height: 500px;
     background-color: lightskyblue;
     overflow: hidden;
+    position: relative;
 }
 
 .fly-area {
@@ -17,12 +18,41 @@
     height: 50px;
 }
 
-.one {
+.red {
     background-color: red;
 }
 
-.two {
+.blue {
     background-color: blue;
+}
+
+.shot {
+    position: absolute;
+    bottom: 10px;
+    height: 20px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.one {
+    left: 10px;
+}
+
+.two {
+    left: 30px;
+}
+
+.three {
+    left: 50px;
+}
+
+.four {
+    left: 70px;
+}
+
+.five {
+    left: 90px;
 }
 
 p {
