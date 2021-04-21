@@ -24,3 +24,7 @@
 .two {
     background-color: blue;
 }
+
+p {
+    display: none;
+}
