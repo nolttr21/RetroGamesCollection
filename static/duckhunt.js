@@ -17,6 +17,9 @@ let duckTwoHorizontalMove;
 
 let duckTimer;
 
+let shotDuckOne = false;
+let shotDuckTwo = false;
+
 //function to set random positions for ducks to start in
 const setDuckPositions = () => {
     duckOneTop = getRandomInt(1, 300);
@@ -40,13 +43,25 @@ const getRandomInt = (min, max) => {
 //function to set which way the ducks are going to move
 const setDuckTrajectory = () => {
     duckOneVerticalMove = getRandomInt(1, 3);
-    duckOneHorizontalMove = getRandomInt(1, 3);
+    if (duckOneVerticalMove == 1) {
+        duckOneHorizontalMove = 3;
+    } else if (duckOneVerticalMove == 2) {
+        duckOneHorizontalMove = 2;
+    } else {
+        duckOneHorizontalMove = 1;
+    }
 
     duckTwoVerticalMove = getRandomInt(1, 3);
-    duckTwoHorizontalMove = getRandomInt(1, 3);
+    if (duckTwoVerticalMove == 1) {
+        duckTwoHorizontalMove = 3;
+    } else if (duckTwoVerticalMove == 2) {
+        duckTwoHorizontalMove = 2;
+    } else {
+        duckTwoHorizontalMove = 1;
+    }
 }
 
-//function to move the ducks\
+//function to move the ducks
 const moveDucks = () => {
     duckOneTop += duckOneVerticalMove;
     duckOneLeft += duckOneHorizontalMove;
@@ -60,15 +75,20 @@ const moveDucks = () => {
     duckTwo.style.top = duckTwoTop + 'px';
     duckTwo.style.left = duckTwoLeft + 'px';
 
-    duckOneVerticalMove = detectUpperLowerCollision(duckOneTop, duckOneVerticalMove);
-    duckTwoVerticalMove = detectUpperLowerCollision(duckTwoTop, duckTwoVerticalMove);
-
-    duckOneHorizontalMove = detectLeftRightCollision(duckOneLeft, duckOneHorizontalMove);
-    duckTwoHorizontalMove = detectLeftRightCollision(duckTwoLeft, duckTwoHorizontalMove);
+    if (!shotDuckOne) {
+        duckOneVerticalMove = detectUpperLowerCollision(duckOneTop, duckOneVerticalMove);
+        duckOneHorizontalMove = detectLeftRightCollision(duckOneLeft, duckOneHorizontalMove); 
+    }
+    
+    if (!shotDuckTwo) {
+        duckTwoVerticalMove = detectUpperLowerCollision(duckTwoTop, duckTwoVerticalMove);
+        duckTwoHorizontalMove = detectLeftRightCollision(duckTwoLeft, duckTwoHorizontalMove); 
+    }
+    
 
     duckTimer = setTimeout(() => {
         moveDucks();
-    }, 25);
+    }, 10);
 }
 
 //function to detect vertical movement collision
@@ -88,6 +108,23 @@ const detectLeftRightCollision = (coord, trajectory) => {
         return trajectory;
     }
 }
+
+//function for when first duck is clicked (shot)
+const deadDuckOne = () => {
+    duckOneHorizontalMove = 0;
+    duckOneVerticalMove = 4;
+    shotDuckOne = true;
+}
+
+//function for when second duck is clicked (shot)
+const deadDuckTwo = () => {
+    duckTwoHorizontalMove = 0;
+    duckTwoVerticalMove = 4;
+    shotDuckTwo = true;
+}
+
+duckOne.addEventListener('click', deadDuckOne);
+duckTwo.addEventListener('click', deadDuckTwo);
 
 setDuckPositions();
 setDuckTrajectory();
