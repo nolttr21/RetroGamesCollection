@@ -201,6 +201,8 @@ const gameOver = () => {
 
 //handle resetting the game when the player moves to the next round
 const nextRound = () => {
+    clearTimeout(duckTimer);
+    clearTimeout(stopGameTimer);
     gameWin = false;
     gameRunning = true;
     shotDuckOne = false;
