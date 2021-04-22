@@ -10,6 +10,7 @@ const shotTwo = document.querySelector('.two');
 const shotThree = document.querySelector('.three');
 const shotFour = document.querySelector('.four');
 const shotFive = document.querySelector('.five');
+const scoreText = document.querySelector('.score-value');
 
 //set up variables to be used
 let duckOneTop;
@@ -29,6 +30,7 @@ let shotDuckOne = false;
 let shotDuckTwo = false;
 
 let shotsLeft = 5;
+let currentScore = 0;
 
 let gameRunning = true;
 let gameLost = false;
@@ -130,6 +132,7 @@ const deadDuckOne = () => {
     duckOneHorizontalMove = 0;
     duckOneVerticalMove = 4;
     shotDuckOne = true;
+    increaseScore();
     detectGameWin();
 }
 
@@ -138,6 +141,7 @@ const deadDuckTwo = () => {
     duckTwoHorizontalMove = 0;
     duckTwoVerticalMove = 4;
     shotDuckTwo = true;
+    increaseScore();
     detectGameWin();
 }
 
@@ -158,6 +162,11 @@ const shoot = () => {
     if (shotsLeft == 0 && !gameWin) {
         gameOver();
     }
+}
+
+const increaseScore = () => {
+    currentScore++;
+    scoreText.textContent = currentScore;
 }
 
 //detect if the player has shot both ducks
