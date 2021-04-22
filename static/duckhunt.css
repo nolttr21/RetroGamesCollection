@@ -55,6 +55,6 @@
     left: 90px;
 }
 
-p {
+.win, .lose {
     display: none;
 }
