@@ -11,6 +11,8 @@ const shotThree = document.querySelector('.three');
 const shotFour = document.querySelector('.four');
 const shotFive = document.querySelector('.five');
 const scoreText = document.querySelector('.score-value');
+const roundText = document.querySelector('.round-value');
+const advanceButton = document.querySelector('.next-round');
 
 //set up variables to be used
 let duckOneTop;
@@ -31,6 +33,7 @@ let shotDuckTwo = false;
 
 let shotsLeft = 5;
 let currentScore = 0;
+let currentRound = 1;
 
 let gameRunning = true;
 let gameLost = false;
@@ -145,6 +148,7 @@ const deadDuckTwo = () => {
     detectGameWin();
 }
 
+//subtract a shot and remove it from the screen when the player clicks anywhere in the game area
 const shoot = () => {
     shotsLeft -= 1;
     if (shotFive.style.display != 'none') {
@@ -164,6 +168,7 @@ const shoot = () => {
     }
 }
 
+//increase the score displayed
 const increaseScore = () => {
     currentScore++;
     scoreText.textContent = currentScore;
@@ -184,18 +189,42 @@ const detectGameWin = () => {
 const gameWon = () => {
     gameWin = true;
     winText.style.display = 'block';
+    advanceButton.style.display = 'block';
 }
 
+//end the game when the player misses one or both ducks
 const gameOver = () => {
     gameLost = true;
     gameRunning = false;
     loseText.style.display = 'block';
 }
 
+//handle resetting the game when the player moves to the next round
+const nextRound = () => {
+    gameWin = false;
+    gameRunning = true;
+    shotDuckOne = false;
+    shotDuckTwo = false;
+    shotsLeft = 5;
+    setDuckPositions();
+    setDuckTrajectory();
+    moveDucks();
+    winText.style.display = 'none';
+    advanceButton.style.display = 'none';
+    shotOne.style.display = 'block';
+    shotTwo.style.display = 'block';
+    shotThree.style.display = 'block';
+    shotFour.style.display = 'block';
+    shotFive.style.display = 'block';
+    currentRound++;
+    roundText.textContent = currentRound;
+}
+
 //set event listeners on ducks to call functions when clicked
 duckOne.addEventListener('mousedown', deadDuckOne);
 duckTwo.addEventListener('mousedown', deadDuckTwo);
 gameArea.addEventListener('mousedown', shoot);
+advanceButton.addEventListener('click', nextRound);
 
 setDuckPositions();
 setDuckTrajectory();
