@@ -55,6 +55,6 @@
     left: 90px;
 }
 
-.win, .lose {
+.win, .lose, .next-round {
     display: none;
 }
