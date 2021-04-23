@@ -18,16 +18,9 @@
     height: 50px;
 }
 
-.red {
-    background-color: red;
-}
-
-.blue {
-    background-color: blue;
-}
-
 .shot {
     position: absolute;
+    z-index: 3;
     bottom: 10px;
     height: 20px;
     width: 10px;
@@ -53,6 +46,19 @@
 
 .five {
     left: 90px;
+}
+
+.grass {
+    position: absolute;
+    bottom: 0;
+}
+
+.tree {
+    position: absolute;
+    bottom: 20px;
+    width: 200px;
+    height: 250px;
+
 }
 
 .win, .lose, .next-round, .reset-game {
