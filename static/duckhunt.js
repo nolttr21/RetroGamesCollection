@@ -125,10 +125,26 @@ const detectUpperLowerCollision = (coord, trajectory) => {
 //function to detect collision on left and right sides
 const detectLeftRightCollision = (coord, trajectory) => {
     if (coord <= 0 || coord >= 450) {
+        flipDuckImage();
         return -trajectory;
     } else {
         return trajectory;
     }
+}
+
+//flip the image of the duck according to the way it's facing
+const flipDuckImage = () => {
+    if (duckOneHorizontalMove < 0) {
+        duckOne.style.transform = 'scaleX(-1)';
+    } else if (duckOneHorizontalMove > 0) {
+        duckOne.style.transform = 'scaleX(1)';
+    } 
+
+    if (duckTwoHorizontalMove < 0) {
+        duckTwo.style.transform = 'scaleX(-1)';
+    } else if (duckTwoHorizontalMove > 0) {
+        duckTwo.style.transform = 'scaleX(1)';
+    } 
 }
 
 //function for when first duck is clicked (shot)
