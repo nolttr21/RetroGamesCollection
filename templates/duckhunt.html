@@ -8,7 +8,6 @@
         <title>Document</title>
     </head>
     <body>
-        <p class='round'>Round: <span class='round-value'>1</span></p>
         <div class='game-container'>
             <div class='fly-area'>
                 <img class='duck red' src='../static/images/duck.png'>
@@ -21,12 +20,13 @@
             <div class='shot five'></div>
             <img class='tree' src='../static/images/tree.png'>
             <img class='grass' src='../static/images/grass.png'>
+            <p class='round ui'>Round: <span class='round-value'>1</span></p>
+            <p class='score ui'>Score: <span class='score-value'>0</span></p>
+            <p class='win ui'>Round passed!</p>
+            <button class='next-round ui'>Next Round</button>
+            <p class='lose ui'>You lose</p>
+            <button class='reset-game ui'>Start Over</button>
         </div>
-        <p class='score'>Score: <span class='score-value'>0</span></p>
-        <p class='win'>Round passed!</p>
-        <button class='next-round'>Next Round</button>
-        <p class='lose'>You lose</p>
-        <button class='reset-game'>Start Over</button>
         <script src='../static/duckhunt.js'></script>
     </body>
 </html>

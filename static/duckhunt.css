@@ -2,8 +2,51 @@
     width: 500px;
     height: 500px;
     background-color: lightskyblue;
+    font-family: monospace;
     overflow: hidden;
     position: relative;
+}
+
+.ui {
+    position: absolute;
+}
+
+.round {
+    top: -10px;
+    left: 10px;
+    font-size: 20px;
+}
+
+.score {
+    bottom: -20px;
+    right: 10px;
+    font-size: 30px;
+}
+
+.win, .lose {
+    font-size: 30px;
+    top: 180px;
+}
+
+.win {
+    left: 130px;
+}
+
+.lose {
+    left: 175px;
+}
+
+button {
+    font-size: 30px;
+    top: 250px;
+}
+
+.reset-game {
+    left: 170px;
+}
+
+.next-round {
+    left: 155px;
 }
 
 .fly-area {
