@@ -55,6 +55,6 @@
     left: 90px;
 }
 
-.win, .lose, .next-round {
+.win, .lose, .next-round, .reset-game {
     display: none;
 }
