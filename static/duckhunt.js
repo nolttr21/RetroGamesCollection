@@ -153,6 +153,7 @@ const deadDuckOne = () => {
     duckOneVerticalMove = 4;
     shotDuckOne = true;
     increaseScore();
+    duckOne.removeEventListener('mousedown', deadDuckOne);
     detectGameWin();
 }
 
@@ -162,6 +163,7 @@ const deadDuckTwo = () => {
     duckTwoVerticalMove = 4;
     shotDuckTwo = true;
     increaseScore();
+    duckTwo.removeEventListener('mousedown', deadDuckTwo);
     detectGameWin();
 }
 
@@ -205,6 +207,9 @@ const detectGameWin = () => {
 //add elements to the screen to indicate the player has won
 const gameWon = () => {
     gameWin = true;
+    duckOne.removeEventListener('mousedown', deadDuckOne);
+    duckTwo.removeEventListener('mousedown', deadDuckTwo);
+    gameArea.removeEventListener('mousedown', shoot);
     winText.style.display = 'block';
     advanceButton.style.display = 'block';
 }
@@ -215,6 +220,7 @@ const gameOver = () => {
     gameRunning = false;
     duckOne.removeEventListener('mousedown', deadDuckOne);
     duckTwo.removeEventListener('mousedown', deadDuckTwo);
+    gameArea.removeEventListener('mousedown', shoot);
     loseText.style.display = 'block';
     resetButton.style.display = 'block';
 }
@@ -248,6 +254,7 @@ const resetGame = () => {
     moveDucks();
     duckOne.addEventListener('mousedown', deadDuckOne);
     duckTwo.addEventListener('mousedown', deadDuckTwo);
+    gameArea.addEventListener('mousedown', shoot);
     loseText.style.display = 'none';
     winText.style.display = 'none';
     advanceButton.style.display = 'none';
