@@ -197,6 +197,8 @@ const gameWon = () => {
 const gameOver = () => {
     gameLost = true;
     gameRunning = false;
+    duckOne.removeEventListener('mousedown', deadDuckOne);
+    duckTwo.removeEventListener('mousedown', deadDuckTwo);
     loseText.style.display = 'block';
     resetButton.style.display = 'block';
 }
@@ -228,6 +230,8 @@ const resetGame = () => {
     setDuckPositions();
     setDuckTrajectory();
     moveDucks();
+    duckOne.addEventListener('mousedown', deadDuckOne);
+    duckTwo.addEventListener('mousedown', deadDuckTwo);
     loseText.style.display = 'none';
     winText.style.display = 'none';
     advanceButton.style.display = 'none';
