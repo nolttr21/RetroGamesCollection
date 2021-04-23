@@ -13,6 +13,7 @@ const shotFive = document.querySelector('.five');
 const scoreText = document.querySelector('.score-value');
 const roundText = document.querySelector('.round-value');
 const advanceButton = document.querySelector('.next-round');
+const resetButton = document.querySelector('.reset-game');
 
 //set up variables to be used
 let duckOneTop;
@@ -197,10 +198,26 @@ const gameOver = () => {
     gameLost = true;
     gameRunning = false;
     loseText.style.display = 'block';
+    resetButton.style.display = 'block';
 }
 
 //handle resetting the game when the player moves to the next round
 const nextRound = () => {
+    resetGame();
+    currentRound++;
+    roundText.textContent = currentRound;
+}
+
+const startOver = () => {
+    resetGame();
+    currentScore = 0;
+    scoreText.textContent = currentScore;
+    currentRound = 1;
+    roundText.textContent = currentRound;
+}
+
+//handle resetting the things that will be repeated
+const resetGame = () => {
     clearTimeout(duckTimer);
     clearTimeout(stopGameTimer);
     gameWin = false;
@@ -211,15 +228,15 @@ const nextRound = () => {
     setDuckPositions();
     setDuckTrajectory();
     moveDucks();
+    loseText.style.display = 'none';
     winText.style.display = 'none';
     advanceButton.style.display = 'none';
+    resetButton.style.display = 'none';
     shotOne.style.display = 'block';
     shotTwo.style.display = 'block';
     shotThree.style.display = 'block';
     shotFour.style.display = 'block';
     shotFive.style.display = 'block';
-    currentRound++;
-    roundText.textContent = currentRound;
 }
 
 //set event listeners on ducks to call functions when clicked
@@ -227,6 +244,7 @@ duckOne.addEventListener('mousedown', deadDuckOne);
 duckTwo.addEventListener('mousedown', deadDuckTwo);
 gameArea.addEventListener('mousedown', shoot);
 advanceButton.addEventListener('click', nextRound);
+resetButton.addEventListener('click', startOver);
 
 setDuckPositions();
 setDuckTrajectory();
