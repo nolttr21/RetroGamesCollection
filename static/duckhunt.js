@@ -11,6 +11,7 @@ const shotThree = document.querySelector('.three');
 const shotFour = document.querySelector('.four');
 const shotFive = document.querySelector('.five');
 const scoreText = document.querySelector('.score-value');
+const highScoreText = document.querySelector('.high-score-value');
 const roundText = document.querySelector('.round-value');
 const advanceButton = document.querySelector('.next-round');
 const resetButton = document.querySelector('.reset-game');
@@ -35,6 +36,7 @@ let shotDuckTwo = false;
 let shotsLeft = 5;
 let currentScore = 0;
 let currentRound = 1;
+let currentHighScore = 0;
 
 let gameRunning = true;
 let gameLost = false;
@@ -191,6 +193,11 @@ const shoot = () => {
 const increaseScore = () => {
     currentScore++;
     scoreText.textContent = currentScore;
+
+    if (currentScore > currentHighScore) {
+        currentHighScore = currentScore;
+        highScoreText.textContent = currentHighScore;
+    }
 }
 
 //detect if the player has shot both ducks
