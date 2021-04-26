@@ -15,6 +15,8 @@ const highScoreText = document.querySelector('.high-score-value');
 const roundText = document.querySelector('.round-value');
 const advanceButton = document.querySelector('.next-round');
 const resetButton = document.querySelector('.reset-game');
+const highScoreSubmit = document.querySelector('#high-score-form');
+const submitButton = document.querySelector('input[type="submit"]');
 
 //set up variables to be used
 let duckOneTop;
@@ -230,6 +232,11 @@ const gameOver = () => {
     gameArea.removeEventListener('mousedown', shoot);
     loseText.style.display = 'block';
     resetButton.style.display = 'block';
+
+    if (currentScore == currentHighScore) {
+        highScoreSubmit.value = currentHighScore;
+        submitButton.style.display = 'block';
+    }
 }
 
 //handle resetting the game when the player moves to the next round
@@ -273,12 +280,34 @@ const resetGame = () => {
     shotFive.style.display = 'block';
 }
 
+//submit high score form
+const ajaxget = () => {
+    // (A) GET FORM DATA
+    const data = new URLSearchParams();
+    data.append('score', highScoreSubmit.value);
+   
+    // (B) AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "0-dummy.php?" + data.toString());
+    // What to do when server responds
+    xhr.onload = function(){ console.log(this.response); };
+    xhr.send();
+   
+    // (C) PREVENT HTML FORM SUBMIT
+    return false;
+}
+
+const hideSubmitButton = () => {
+    submitButton.style.display = 'none';
+}
+
 //set event listeners on ducks to call functions when clicked
 duckOne.addEventListener('mousedown', deadDuckOne);
 duckTwo.addEventListener('mousedown', deadDuckTwo);
 gameArea.addEventListener('mousedown', shoot);
 advanceButton.addEventListener('click', nextRound);
 resetButton.addEventListener('click', startOver);
+submitButton.addEventListener('click', hideSubmitButton);
 
 setDuckPositions();
 setDuckTrajectory();
