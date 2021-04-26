@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../static/duckhunt.css">
-        <title>Document</title>
+        <title>Duck Hunt</title>
     </head>
     <body>
         <div class='game-container'>
@@ -27,6 +27,10 @@
             <button class='next-round ui'>Next Round</button>
             <p class='lose ui'>You lose</p>
             <button class='reset-game ui'>Start Over</button>
+            <form onsubmit='return ajaxget()'>
+                <input type='hidden' id='high-score-form' name='high-score-form'>
+                <input type='submit' class='ui' value='Sumbit High Score'>
+            </form>
         </div>
         <script src='../static/duckhunt.js'></script>
     </body>
