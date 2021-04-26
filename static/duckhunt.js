@@ -135,15 +135,15 @@ const detectLeftRightCollision = (coord, trajectory) => {
 //flip the image of the duck according to the way it's facing
 const flipDuckImage = () => {
     if (duckOneHorizontalMove < 0) {
-        duckOne.style.transform = 'scaleX(-1)';
-    } else if (duckOneHorizontalMove > 0) {
         duckOne.style.transform = 'scaleX(1)';
+    } else if (duckOneHorizontalMove > 0) {
+        duckOne.style.transform = 'scaleX(-1)';
     } 
 
     if (duckTwoHorizontalMove < 0) {
-        duckTwo.style.transform = 'scaleX(-1)';
-    } else if (duckTwoHorizontalMove > 0) {
         duckTwo.style.transform = 'scaleX(1)';
+    } else if (duckTwoHorizontalMove > 0) {
+        duckTwo.style.transform = 'scaleX(-1)';
     } 
 }
 
