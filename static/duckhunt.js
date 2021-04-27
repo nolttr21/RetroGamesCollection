@@ -273,6 +273,7 @@ const resetGame = () => {
     winText.style.display = 'none';
     advanceButton.style.display = 'none';
     resetButton.style.display = 'none';
+    submitButton.style.display = 'none';
     shotOne.style.display = 'block';
     shotTwo.style.display = 'block';
     shotThree.style.display = 'block';
