@@ -58,14 +58,11 @@ function SetupCanvas(){
 // event handling if game over is reached
 function HandleKeyDown(e){
     keys[e.keyCode] = true;
-    if (e.keyCode === 32){
-        bullets.push(new Bullet(ship.angle));
-    }
 }
 function HandleKeyUp(e){
     keys[e.keyCode] = false;
     if (e.keyCode === 32){
-        //bullets.push(new Bullet(ship.angle));
+        bullets.push(new Bullet(ship.angle));
     }
 }
  
