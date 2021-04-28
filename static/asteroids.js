@@ -24,7 +24,7 @@ function SetupCanvas(){
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ship = new Ship();
  
-    for(let i = 0; i < 60; i++){
+    for(let i = 0; i < 6; i++){
         asteroids.push(new Asteroid());
     }
  
@@ -151,7 +151,7 @@ class Bullet{
         this.angle = angle;
         this.height = 4;
         this.width = 4;
-        this.speed = .01;
+        this.speed = 5;
         this.velX = 0;
         this.velY = 0;
     }
@@ -290,7 +290,7 @@ function Render() {
         ship.y = canvasHeight / 2;
         ship.velX = 0;
         ship.velY = 0;
-        for(let i = 0; i < 60; i++){
+        for(let i = 0; i < 6; i++){
             let asteroid = new Asteroid();
             asteroid.speed += .25;
             asteroids.push(asteroid);
