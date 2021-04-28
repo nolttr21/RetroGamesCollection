@@ -284,7 +284,7 @@ const resetGame = () => {
 //submit high score form
 const ajaxget = () => {
     // (A) GET FORM DATA
-    const data = new URLSearchParams();
+    const data = new URLSearchParams(); 
     data.append('score', highScoreSubmit.value);
    
     // (B) AJAX
