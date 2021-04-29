@@ -10,6 +10,8 @@ let score = 0;
 let lives = 3;
 let runGame;
 let asteroidSpeed = 1;
+let grace = true;
+let graceTimer;
 const resetButton = document.querySelector('.reset-game');
  
 // HOMEWORK SOLUTION - Contributed by luckyboysunday
@@ -53,6 +55,7 @@ function SetupCanvas(){
     } else {
         highScore = localStorage.getItem(localStorageName);
     }
+    endGrace();
  
     Render();
 }
@@ -126,7 +129,7 @@ class Ship {
         this.y -= this.velY;
     }
     Draw() {
-        ctx.strokeStyle = this.strokeColor;
+        ctx.strokeStyle = !grace ? this.strokeColor: "grey";
         ctx.beginPath();
         // Angle between vertices of the ship
         let vertAngle = ((Math.PI * 2) / 3);
@@ -298,6 +301,8 @@ function Render() {
             //asteroid.speed += .5;
             asteroids.push(asteroid);
         }
+        grace = true;
+        endGrace();
     }
  
     // Draw life ships
@@ -307,11 +312,15 @@ function Render() {
     if (asteroids.length !== 0) {
         for(let k = 0; k < asteroids.length; k++){
             if(CircleCollision(ship.x, ship.y, 11, asteroids[k].x, asteroids[k].y, asteroids[k].collisionRadius)){
-                ship.x = canvasWidth / 2;
-                ship.y = canvasHeight / 2;
-                ship.velX = 0;
-                ship.velY = 0;
-                lives -= 1;
+                if (!grace) {
+                    ship.x = canvasWidth / 2;
+                    ship.y = canvasHeight / 2;
+                    ship.velX = 0;
+                    ship.velY = 0;
+                    lives -= 1;
+                    grace = true;
+                    endGrace();
+                }
             }
         }
     }
@@ -383,6 +392,12 @@ function resetGame() {
     bullets = [];
     keys = [];
     SetupCanvas();
+}
+
+function endGrace() {
+    graceTimer = setTimeout(() => {
+        grace = false;
+    }, 1000);
 }
 
 resetButton.addEventListener('click', resetGame);
