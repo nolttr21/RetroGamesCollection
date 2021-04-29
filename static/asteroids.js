@@ -291,9 +291,10 @@ function Render() {
         ship.y = canvasHeight / 2;
         ship.velX = 0;
         ship.velY = 0;
+        Asteroid.speed += .5;
         for(let i = 0; i < 6; i++){
             let asteroid = new Asteroid();
-            asteroid.speed += .5;
+            //asteroid.speed += .5;
             asteroids.push(asteroid);
         }
     }
