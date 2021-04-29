@@ -7,8 +7,12 @@ body{
 }
 #my-canvas {
     background: #000;
-    
 }
 .reset-game {
-    display: none;
+    margin: 0 auto;
+    font-size: 32px;
+    border-radius: 50px;
+    background-color: #333;
+    color: white;
+    border: 1px solid red;
 }

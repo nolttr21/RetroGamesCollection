@@ -293,7 +293,7 @@ function Render() {
         ship.velY = 0;
         for(let i = 0; i < 6; i++){
             let asteroid = new Asteroid();
-            asteroid.speed += 1;
+            asteroid.speed += .5;
             asteroids.push(asteroid);
         }
     }
