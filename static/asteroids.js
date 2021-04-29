@@ -9,6 +9,7 @@ let asteroids = [];
 let score = 0;
 let lives = 3;
 let runGame;
+let asteroidSpeed = 1;
 const resetButton = document.querySelector('.reset-game');
  
 // HOMEWORK SOLUTION - Contributed by luckyboysunday
@@ -171,7 +172,7 @@ class Asteroid{
         this.visible = true;
         this.x = x || Math.floor(Math.random() * canvasWidth);
         this.y = y || Math.floor(Math.random() * canvasHeight);
-        this.speed = 1;
+        this.speed = asteroidSpeed;
         this.radius = radius || 25;
         this.angle = Math.floor(Math.random() * 359);
         this.strokeColor = 'red';
@@ -291,7 +292,7 @@ function Render() {
         ship.y = canvasHeight / 2;
         ship.velX = 0;
         ship.velY = 0;
-        Asteroid.speed += .5;
+        asteroidSpeed += .25;
         for(let i = 0; i < 6; i++){
             let asteroid = new Asteroid();
             //asteroid.speed += .5;
@@ -378,7 +379,7 @@ function resetGame() {
     score = 0;
     lives = 3;
     asteroids = [];
-    Asteroid.speed = 1;
+    asteroidSpeed = 1;
     bullets = [];
     keys = [];
     SetupCanvas();
