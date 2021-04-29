@@ -9,3 +9,6 @@ body{
     background: #000;
     
 }
+.reset-game {
+    display: none;
+}

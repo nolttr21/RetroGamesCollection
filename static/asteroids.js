@@ -8,12 +8,15 @@ let bullets = [];
 let asteroids = [];
 let score = 0;
 let lives = 3;
+let runGame;
+const resetButton = document.querySelector('.reset-game');
  
 // HOMEWORK SOLUTION - Contributed by luckyboysunday
 let highScore;
 let localStorageName = "HighScore";
  
 document.addEventListener('DOMContentLoaded', SetupCanvas);
+
  
 function SetupCanvas(){
     canvas = document.getElementById("my-canvas");
@@ -274,6 +277,7 @@ function Render() {
         // If Game over remove event listeners to stop getting keyboard input
         document.body.removeEventListener("keydown", HandleKeyDown);
         document.body.removeEventListener("keyup", HandleKeyUp);
+        resetButton.style.display = 'block';
  
         ship.visible = false;
         ctx.fillStyle = 'white';
@@ -289,7 +293,7 @@ function Render() {
         ship.velY = 0;
         for(let i = 0; i < 6; i++){
             let asteroid = new Asteroid();
-            asteroid.speed += .25;
+            asteroid.speed += 1;
             asteroids.push(asteroid);
         }
     }
@@ -363,5 +367,20 @@ loop1:
     ctx.font = '21px Arial';
     ctx.fillText("HIGH SCORE : " + highScore.toString(), 20, 70);
  
-    requestAnimationFrame(Render);
+    runGame = requestAnimationFrame(Render);
 }
+
+function resetGame() {
+    cancelAnimationFrame(runGame);
+    resetButton.style.display = 'none';
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    score = 0;
+    lives = 3;
+    asteroids = [];
+    Asteroid.speed = 1;
+    bullets = [];
+    keys = [];
+    SetupCanvas();
+}
+
+resetButton.addEventListener('click', resetGame);
