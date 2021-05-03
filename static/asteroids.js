@@ -16,8 +16,7 @@ const resetButton = document.querySelector('.reset-game');
 const submitButton = document.querySelector('.submit-score');
  
 // HOMEWORK SOLUTION - Contributed by luckyboysunday
-let highScore;
-let localStorageName = "HighScore";
+let highScore = 0;
  
 document.addEventListener('DOMContentLoaded', SetupCanvas);
 
@@ -51,11 +50,6 @@ function SetupCanvas(){
  
     // HOMEWORK SOLUTION - Contributed by luckyboysunday
     // Retrieves locally stored high scores
-    if (localStorage.getItem(localStorageName) == null) {
-        highScore = 0;
-    } else {
-        highScore = localStorage.getItem(localStorageName);
-    }
     endGrace();
  
     Render();
@@ -283,7 +277,9 @@ function Render() {
         document.body.removeEventListener("keydown", HandleKeyDown);
         document.body.removeEventListener("keyup", HandleKeyUp);
         resetButton.style.display = 'block';
-        submitButton.style.display = 'block';
+        if (score == highScore) {
+            submitButton.style.display = 'block';
+        }
  
         ship.visible = false;
         ctx.fillStyle = 'white';
@@ -385,6 +381,7 @@ loop1:
 function resetGame() {
     cancelAnimationFrame(runGame);
     resetButton.style.display = 'none';
+    submitButton.style.display = 'none';
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     score = 0;
     lives = 3;
