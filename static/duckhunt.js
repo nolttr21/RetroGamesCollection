@@ -281,26 +281,7 @@ const resetGame = () => {
     shotFive.style.display = 'block';
 }
 
-/*
-//submit high score form
-const ajaxget = () => {
-    // (A) GET FORM DATA
-    const data = new URLSearchParams(); 
-    data.append('score', highScoreSubmit.value);
-   
-    // (B) AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "0-dummy.php?" + data.toString());
-    // What to do when server responds
-    xhr.onload = function(){ console.log(this.response); };
-    xhr.send();
-   
-    // (C) PREVENT HTML FORM SUBMIT
-    return false;
-}
-*/
-
-const hideSubmitButton = () => {
+const submitScore = () => {
     location.assign(location + '/' + currentHighScore);
     history.back();
     submitButton.style.display = 'none';
@@ -312,7 +293,7 @@ duckTwo.addEventListener('mousedown', deadDuckTwo);
 gameArea.addEventListener('mousedown', shoot);
 advanceButton.addEventListener('click', nextRound);
 resetButton.addEventListener('click', startOver);
-submitButton.addEventListener('click', hideSubmitButton);
+submitButton.addEventListener('click', submitScore);
 
 setDuckPositions();
 setDuckTrajectory();
