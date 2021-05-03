@@ -13,6 +13,7 @@ let asteroidSpeed = 1;
 let grace = true;
 let graceTimer;
 const resetButton = document.querySelector('.reset-game');
+const submitButton = document.querySelector('.submit-score');
  
 // HOMEWORK SOLUTION - Contributed by luckyboysunday
 let highScore;
@@ -282,6 +283,7 @@ function Render() {
         document.body.removeEventListener("keydown", HandleKeyDown);
         document.body.removeEventListener("keyup", HandleKeyUp);
         resetButton.style.display = 'block';
+        submitButton.style.display = 'block';
  
         ship.visible = false;
         ctx.fillStyle = 'white';
@@ -374,7 +376,6 @@ loop1:
     // HOMEWORK SOLUTION
     // Updates the high score using local storage
     highScore = Math.max(score, highScore);
-    localStorage.setItem(localStorageName, highScore);
     ctx.font = '21px Arial';
     ctx.fillText("HIGH SCORE : " + highScore.toString(), 20, 70);
  
@@ -400,4 +401,10 @@ function endGrace() {
     }, 1000);
 }
 
+function submitHighScore() {
+    location.assign(location + '/' + highScore);
+    submitButton.style.display = 'none';
+}
+
 resetButton.addEventListener('click', resetGame);
+submitButton.addEventListener('click', submitHighScore);

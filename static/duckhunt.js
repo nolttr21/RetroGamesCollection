@@ -283,7 +283,6 @@ const resetGame = () => {
 
 const submitScore = () => {
     location.assign(location + '/' + currentHighScore);
-    history.back();
     submitButton.style.display = 'none';
 }
 
