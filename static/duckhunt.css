@@ -117,7 +117,7 @@ button, input[type='submit'] {
     display: none;
 }
 
-input[type='submit'] {
+.submit-score {
     display: none;
     top: 300px;
     left: 80px;

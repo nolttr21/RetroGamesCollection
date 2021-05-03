@@ -16,7 +16,7 @@ const roundText = document.querySelector('.round-value');
 const advanceButton = document.querySelector('.next-round');
 const resetButton = document.querySelector('.reset-game');
 const highScoreSubmit = document.querySelector('#high-score-form');
-const submitButton = document.querySelector('input[type="submit"]');
+const submitButton = document.querySelector('.submit-score');
 
 //set up variables to be used
 let duckOneTop;
@@ -234,7 +234,7 @@ const gameOver = () => {
     resetButton.style.display = 'block';
 
     if (currentScore == currentHighScore) {
-        highScoreSubmit.value = currentHighScore;
+        //highScoreSubmit.value = currentHighScore;
         submitButton.style.display = 'block';
     }
 }
@@ -281,6 +281,7 @@ const resetGame = () => {
     shotFive.style.display = 'block';
 }
 
+/*
 //submit high score form
 const ajaxget = () => {
     // (A) GET FORM DATA
@@ -297,8 +298,11 @@ const ajaxget = () => {
     // (C) PREVENT HTML FORM SUBMIT
     return false;
 }
+*/
 
 const hideSubmitButton = () => {
+    location.assign(location + '/' + currentHighScore);
+    history.back();
     submitButton.style.display = 'none';
 }
 
