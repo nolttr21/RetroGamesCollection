@@ -30,8 +30,8 @@
   }
 
   .game-container {
-    width: 520px;
-    height: 520px;
+    width: 500px;
+    height: 500px;
     background-color: lightgray;
     margin: 50px auto;
     border: 5px solid black;

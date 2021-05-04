@@ -164,6 +164,12 @@ const checkCollision = () => {
     }
 
     //if the first position has gone past the edge, the game is over
+    if (firstPos.xPos < 0 
+        || firstPos.xPos >= 500 
+        || firstPos.yPos < 0
+        || firstPos.yPos >= 500) {
+            endGame();
+    }
 
     //if the player loses the game, show game over text and the reset button
     //maybe add another function for this?
