@@ -1,0 +1,63 @@
+
+h1{
+    margin-left: 30%;
+}
+
+.first{
+    height: 250px;
+    width: 250px;
+    
+    margin-top: 5%;
+    margin-left: 15%;
+}
+
+.snake{
+    margin-left: 20%;
+}
+p{
+    display: block;
+    margin-left: 10%;
+    margin-right: 60%;
+}
+body{
+    background-color: beige;
+}
+.second{
+    margin-left: 25%;
+}
+
+.start{
+    background-image: url('../images/2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.startup{
+    border: none;
+    margin-top: 40%;
+    margin-left: 45%;
+    font-size: 20px;
+    color: greenyellow;
+    background-color: lightslategray;
+    text-decoration: none;
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+.login{
+    margin-left: 10%;
+    font-size: 15px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.signup{
+    margin-left: 10%;
+    font-size:15px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.flex{
+    display: flex;
+}

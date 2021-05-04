@@ -1,0 +1,20 @@
+body{
+    background: #000;
+}
+#container {
+    max-width: 500px;
+    margin: auto;
+}
+#my-canvas {
+    background: #000;
+}
+.reset-game, .submit-score {
+    display: none;
+    margin: 0 auto;
+    padding: 5px 20px;
+    font-size: 32px;
+    border-radius: 50px;
+    background-color: #333;
+    color: white;
+    border: 1px solid red;
+}
