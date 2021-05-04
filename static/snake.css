@@ -77,7 +77,7 @@
   }
   
   .game-over {
-    color: white;
+    color: black;
     margin-top: 50%;
     display: none;
   }

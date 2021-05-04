@@ -39,7 +39,7 @@ const changeDirection = (e) => {
     //only do this every 100 milliseconds to prevent the snake from doing a 180
     //prevent arrow keys from scrolling the page and set new direction
     if (keyPressed == left || keyPressed == up || keyPressed == right || keyPressed == down) {
-        e.preventDefault;
+        e.preventDefault();
         newDirection = keyPressed;
     }
 
@@ -94,6 +94,8 @@ const moveSnake = () => {
         positions.pop();
         snake.unshift(lastSnake);
         snake.pop();
+
+        checkCollision();
         
         //only move the snake every 100 milliseconds
         moveTime = setTimeout(() => {
@@ -152,13 +154,24 @@ const newApple = () => {
 }
 
 const checkCollision = () => {
+    let firstPos = positions[0];
     //loop through positions array
     //if the first position is the same as any other position, the game is over
+    for (let pos = 1; pos < positions.length; pos++) {
+        if (firstPos.xPos == positions[pos].xPos && firstPos.yPos == positions[pos].yPos) {
+            endGame();
+        }
+    }
 
     //if the first position has gone past the edge, the game is over
 
     //if the player loses the game, show game over text and the reset button
     //maybe add another function for this?
+}
+
+const endGame = () => {
+    gameOver = true;
+    gameOverText.style.display = 'block';
 }
 
 const resetGame = () => {
