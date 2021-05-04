@@ -14,7 +14,7 @@ const currentScoreText = document.querySelector('.score');
 const highScoreText = document.querySelector('high-score');
 
 //create array to store positions of snake segments
-const positions = [{xPos: 260, yPos: 240}, {xPos: 250, yPos: 240}, {xPos: 240, yPos: 240}];
+let positions = [{xPos: 260, yPos: 240}, {xPos: 250, yPos: 240}, {xPos: 240, yPos: 240}];
 
 //position of apple
 let appleX = 0;
@@ -178,6 +178,7 @@ const checkCollision = () => {
 const endGame = () => {
     gameOver = true;
     gameOverText.style.display = 'block';
+    resetButton.style.display = 'block';
 }
 
 const resetGame = () => {
@@ -187,10 +188,32 @@ const resetGame = () => {
     //hide game over text
     //hide reset button
     //reset score to 0
+
+    positions = [{xPos: 260, yPos: 240}, {xPos: 250, yPos: 240}, {xPos: 240, yPos: 240}];
+    for (let section = snake.length - 1; section >= 3; section--) {
+        gameArea.removeChild(snake[section]);
+        snake.pop();
+    }
+    for (let i = 0; i < 3; i++) {
+        snake[i].style.top = positions[i].yPos + 'px';
+        snake[i].style.left = positions[i].xPos + 'px';
+    }
+
+    gameOverText.style.display = 'none';
+    resetButton.style.display = 'none';
+    currentScore = 0;
+
+    gameOver = false;
+    currentDirection = right;
+    xMove = 10;
+    yMove = 0;
+    newApple();
+    moveSnake();
 }
 
 //create event handler to run changeDirection on button presses
 window.addEventListener('keydown', changeDirection);
+resetButton.addEventListener('click', resetGame);
 
 //call functions to initiate the game
 moveSnake();
