@@ -82,7 +82,7 @@
     display: none;
   }
   
-  .reset-game {
+  .reset-game, .submit-score {
     width: auto;
     font-family: monospace;
     margin:  20px 0;

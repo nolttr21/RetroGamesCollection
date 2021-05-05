@@ -10,6 +10,7 @@ const apple = document.querySelector('.apple');
 const gameArea = document.querySelector('.game-container');
 const gameOverText = document.querySelector('.game-over');
 const resetButton = document.querySelector('.reset-game');
+const submitButton = document.querySelector('.submit-score');
 const currentScoreText = document.querySelector('.score');
 const highScoreText = document.querySelector('.high-score');
 
@@ -180,6 +181,9 @@ const endGame = () => {
     gameOver = true;
     gameOverText.style.display = 'block';
     resetButton.style.display = 'block';
+    if (currentScore == highScore) {
+        submitButton.style.display = 'block';
+    }
 }
 
 const resetGame = () => {
@@ -202,6 +206,7 @@ const resetGame = () => {
 
     gameOverText.style.display = 'none';
     resetButton.style.display = 'none';
+    submitButton.style.display = 'none';
     currentScore = 0;
     currentScoreText.textContent = currentScore;
 
@@ -220,9 +225,15 @@ const increaseScore = () => {
     highScoreText.textContent = highScore;
 }
 
+const submitHighScore = () => {
+    location.assign(location + '/' + highScore);
+    submitButton.style.display = 'none';
+}
+
 //create event handler to run changeDirection on button presses
 window.addEventListener('keydown', changeDirection);
 resetButton.addEventListener('click', resetGame);
+submitButton.addEventListener('click', submitHighScore);
 
 //call functions to initiate the game
 moveSnake();
