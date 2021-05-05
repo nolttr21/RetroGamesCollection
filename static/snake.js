@@ -214,7 +214,7 @@ const resetGame = () => {
 }
 
 const increaseScore = () => {
-    currentScore++;
+    currentScore += 10;
     highScore = Math.max(currentScore, highScore);
     currentScoreText.textContent = currentScore;
     highScoreText.textContent = highScore;
