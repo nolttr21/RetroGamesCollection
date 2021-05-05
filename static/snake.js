@@ -11,7 +11,7 @@ const gameArea = document.querySelector('.game-container');
 const gameOverText = document.querySelector('.game-over');
 const resetButton = document.querySelector('.reset-game');
 const currentScoreText = document.querySelector('.score');
-const highScoreText = document.querySelector('high-score');
+const highScoreText = document.querySelector('.high-score');
 
 //create array to store positions of snake segments
 let positions = [{xPos: 260, yPos: 240}, {xPos: 250, yPos: 240}, {xPos: 240, yPos: 240}];
@@ -108,6 +108,7 @@ const moveSnake = () => {
 const didEatApple = () => {
     let snakeHead = positions[0];
     if (snakeHead.xPos == appleX && snakeHead.yPos == appleY) {
+        increaseScore();
         longerSnake();
         newApple();
     }
@@ -202,6 +203,7 @@ const resetGame = () => {
     gameOverText.style.display = 'none';
     resetButton.style.display = 'none';
     currentScore = 0;
+    currentScoreText.textContent = currentScore;
 
     gameOver = false;
     currentDirection = right;
@@ -209,6 +211,13 @@ const resetGame = () => {
     yMove = 0;
     newApple();
     moveSnake();
+}
+
+const increaseScore = () => {
+    currentScore++;
+    highScore = Math.max(currentScore, highScore);
+    currentScoreText.textContent = currentScore;
+    highScoreText.textContent = highScore;
 }
 
 //create event handler to run changeDirection on button presses
