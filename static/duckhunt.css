@@ -122,3 +122,25 @@ button, input[type='submit'] {
     top: 300px;
     left: 80px;
 }
+
+.flex{
+    display: flex;
+}
+
+.highscores{
+    margin-left: 10%;
+    font-size: 15px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.gameselect{
+    margin-left: 10%;
+    font-size:15px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+h1{
+  margin-left: 30%;
+}
