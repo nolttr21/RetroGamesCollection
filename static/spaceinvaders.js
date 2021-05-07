@@ -194,7 +194,7 @@ function drawEnemyBullets() {
         enemyBullet = document.createElement('div')
         enemyBullet.className = 'enemyBullet';
         enemyBullet.dataset.index = index;
-        enemyBullet.style.left = enemyBulletAr[index][0] - 260 + 'px';
+        enemyBullet.style.left = enemyBulletAr[index][0] - 450 + 'px';
         enemyBullet.style.bottom = enemyBulletAr[index][1] + 'px';
         canvas.appendChild(enemyBullet);
     }
