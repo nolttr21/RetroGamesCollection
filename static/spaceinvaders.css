@@ -47,7 +47,7 @@ html, body {
 	font-size: 1.5em;
 	text-align: center;
 	background-color: #FF0000;
-	background-image: url(images/space-background-stars.jpg);
+	background-image: url(./images/space-background-stars.jpeg);
 	background-size: cover;
 	background-position: 0 0;
 	background-repeat: repeat-y;
