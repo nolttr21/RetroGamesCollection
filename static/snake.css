@@ -2,21 +2,22 @@
     margin: 0;
     padding: 0;
   }
-  
+
   html {
     font-family: monospace;
     margin-top: 50px;
   }
-  
+
   body {
     text-align: center;
     background-color: grey;
   }
-  
-  h1 {
-    text-align: center;
-  }
 
+
+  h1{
+      margin-left: 30%;
+  }
+  
   .title {
     font-size: 3rem;
   }
@@ -38,7 +39,7 @@
     position: relative;
     overflow: hidden;
   }
-  
+
   .snake-section {
     width: 10px;
     height: 10px;
@@ -58,7 +59,7 @@
     top: 240px;
     left: 240px;
   }
-  
+
   .apple {
     width: 10px;
     height: 10px;
@@ -75,13 +76,13 @@
     font-weight: bold;
     margin: 20px 0;
   }
-  
+
   .game-over {
     color: black;
     margin-top: 50%;
     display: none;
   }
-  
+
   .reset-game, .submit-score {
     width: auto;
     font-family: monospace;
@@ -91,4 +92,22 @@
     background-color: darkgrey;
     border-radius: 50px;
     display: none;
+  }
+
+  .flex{
+      display: flex;
+  }
+
+  .highscores{
+      margin-left: 10%;
+      font-size: 15px;
+      padding-left: 5%;
+      padding-right: 5%;
+  }
+
+  .gameselect{
+      margin-left: 10%;
+      font-size:15px;
+      padding-left: 5%;
+      padding-right: 5%;
   }

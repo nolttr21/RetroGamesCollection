@@ -18,3 +18,21 @@ body{
     color: white;
     border: 1px solid red;
 }
+
+.highscores{
+    margin-left: 25%;
+    font-size: 15px;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: white;
+    background-color: black;
+}
+
+.gameselect{
+    margin-left: 15%;
+    font-size:15px;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: white;
+    background-color: black;
+}
