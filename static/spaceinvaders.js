@@ -26,13 +26,17 @@ let playerY = 25;
 let bulletAr = [];
 let enemyBulletAr = [];
 let enemiesGrid = [''];
+let theScore = document.querySelector('.playerScore');
+let theHighScore = document.querySelector('.playerHighScore');
 let playerPoints = 0;
+let highScore = Number(theHighScore.textContent);
 let win = document.querySelector(".win");
+const submitButton = document.querySelector('.submit-score');
 
 //SCORE SYSTEM
-let theScore = document.querySelector('.gameScorediv');
 if (playerPoints < 5500) {
-    theScore.innerHTML = 'Player Score: ' + playerPoints;
+    theScore.innerHTML = playerPoints;
+    theHighScore.innerHTML = highScore;
 }
 
 //
@@ -46,12 +50,17 @@ function bulletEnemy() {
                     .concat(bulletAr.slice(Number(bullet.dataset.index) + 1));
                 enemy.textContent = '';
                 playerPoints += 100;
-                theScore.innerHTML = 'Player Score: ' + playerPoints;
+                highScore = Math.max(highScore, playerPoints);
+                theScore.innerHTML = playerPoints;
+                theHighScore.innerHTML = highScore;
                 if (playerPoints === 5500) { //WIN CONDITION
                     canvas.style.borderColor = "red";
                     document.querySelector(".gameScorediv")
                         .style.borderColor = "red";
                     win.style.color = 'red';
+                    if (playerPoints == highScore) {
+                        submitButton.style.display = 'block';
+                    }
                 }
             }
         }
@@ -72,6 +81,9 @@ function gameOver() {
     gameOver.style.color = 'white';
     gameover.backgroundColor = 'red';
     animateEnemies.pause();
+    if (playerPoints == highScore) {
+        submitButton.style.display = 'block';
+    }
 }
 
 function enemyBulletPlayer() {
@@ -319,11 +331,18 @@ playAgainButton.addEventListener("click", () => {
     window.location.reload();
 });
 
+const submitScore = () => {
+    location.assign(location + '/' + highScore);
+    submitButton.style.display = 'none';
+}
+
 //Game Controlers Div (Have them change colors whenever you do something with the spaceship)
 //Later we may add sounds.
 let theLeftbutton = document.querySelector('.left');
 let theRightbutton = document.querySelector('.right');
 let theUpbutton = document.querySelector('.up');
+
+submitButton.addEventListener('click', submitScore);
 
 window.addEventListener("keydown", event => {
     if (event.key == "ArrowLeft") {
