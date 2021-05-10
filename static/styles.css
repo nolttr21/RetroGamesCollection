@@ -46,16 +46,9 @@ body{
     padding-left: 100px;
 }
 
-.login{
+.login, .signup, .highscores{
     margin-left: 5%;
     font-size: 15px;
-    padding-left: 2%;
-    padding-right: 2%;
-}
-
-.signup{
-    margin-left: 5%;
-    font-size:15px;
     padding-left: 2%;
     padding-right: 2%;
 }
