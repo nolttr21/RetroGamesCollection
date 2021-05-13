@@ -187,4 +187,4 @@ def highscores():
 
 # This is for command line testing
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
