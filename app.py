@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask import render_template, request, redirect, url_for, flash,session # to render the html form
 from flask_login import LoginManager, login_user, current_user, logout_user
@@ -15,7 +17,7 @@ from wtform_fields import *
 app = Flask(__name__)
 app.secret_key = 'replace later'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://iznerdudsjpzzf:1982cda9506d2b73e304721096531e417eaa77e34c29c3738fa7e6a869397fc6@ec2-52-23-45-36.compute-1.amazonaws.com:5432/dbk31e5m8oor8i'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(DATABASE_URL)
 db = SQLAlchemy(app)
 
 
