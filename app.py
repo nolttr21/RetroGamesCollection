@@ -2,6 +2,8 @@ from flask import Flask
 from flask import render_template, request, redirect, url_for, flash,session # to render the html form
 from flask_login import LoginManager, login_user, current_user, logout_user
 from wtforms.validators import InputRequired, Length, EqualTo
+from sqlalchemy import update,desc,func
+
 
 
 from models import *
@@ -36,6 +38,7 @@ def index():
         user = User(username=username,password=password,score1=0,score2=0,score3=0,score4=0)
         db.session.add(user)
         db.session.commit()
+
         return redirect(url_for('login'))
 
     return render_template("index.html",form=reg_form)
@@ -45,58 +48,111 @@ def duck_hunt():
     user_object = User.query.filter_by(username=session.get("user",None)).first()
     currentScore = user_object.score1
 
-    return render_template("duckhunt.html",score = currentScore)
+    score1 = db.session.query(func.max(User.score1)).scalar()
+
+    return render_template("duckhunt.html",score1 = score1)
 
 @app.route("/duck_hunt/<score>")
 def submit_score_1(score):
-    #return "high score: %s" % score
-    #user_object = User.query.filter_by(username=userID).first()
-    user_object = session.query(User).filter(User.username == userID).one()
+    submitScore = int(score)#represents the score we submitted
+
+    user_object = User.query.filter_by(username=session.get("user",None)).first()#find the user matching the current username of the logged in user
+    score1 = user_object.score1#get the current score of the logged in user
+
+    if score1 is None:#submit the new score if one isn't already set
+        stmt = update(User).where(User.username == session.get("user",None)).values(score1=submitScore)
+        db.session.execute(stmt)
+        db.session.commit()
+
+    if submitScore > score1:#submit the new score if it is higher than the one already set
+        stmt = update(User).where(User.username == session.get("user",None)).values(score1=submitScore)
+        db.session.execute(stmt)
+        db.session.commit()
 
 
-    currentScore = user_object.score1
-
-    submitScore = int(score)
-
-    if currentScore is None:
-        user_object.score1 = score
-        currentScore = score
-        session.commit()
-
-        return render_template("duckhunt.html",score = currentScore)
+    return redirect(url_for('duck_hunt'))#redirect back to duckhunt
 
 
-    if submitScore > currentScore:
-        user_object.score1 = submitScore
-        session.commit()
 
-        return render_template("duckhunt.html",score = currentScore)
-
-    #   submit new score
-    #redirectd back to duckhunt
 
 @app.route("/snake")
 def snake():
     #<h1 class hidden>current high score<h1>
-    return render_template("snake.html")
+    score2 = db.session.query(func.max(User.score2)).scalar()
+
+    return render_template("snake.html",score2=score2)
 
 @app.route("/snake/<score>")
-def submit_score_2():
-    #<h1 class hidden>current high score<h1>
-    return render_template("snake.html")
-    def submit_score_1(score):
-        return "high score: %s" % score
-        #if high score is greater
-        #   submit new score
-        #redirectd back to duckhunt
+def submit_score_2(score):
+    submitScore = int(score)#represents the score we submitted
 
-#@app.route("/space")
-    #def space():
-        #return render_template("")
+    user_object = User.query.filter_by(username=session.get("user",None)).first()#find the user matching the current username of the logged in user
+    score2 = user_object.score2#get the current score of the logged in user
+
+    if score2 is None:#submit the new score if one isn't already set
+        stmt = update(User).where(User.username == session.get("user",None)).values(score2=submitScore)
+        db.session.execute(stmt)
+        db.session.commit()
+
+    if submitScore > score2:#submit the new score if it is higher than the one already set
+        stmt = update(User).where(User.username == session.get("user",None)).values(score2=submitScore)
+        db.session.execute(stmt)
+        db.session.commit()
+
+
+    return redirect(url_for('snake'))#redirect back to snake
+
+@app.route("/space")
+def space():
+    score4 = db.session.query(func.max(User.score4)).scalar()
+
+    return render_template("spaceinvaders.html",score4 = score4)
+
+@app.route("/space/<score>")
+def submit_score_4(score):
+    submitScore = int(score)#represents the score we submitted
+    user_object = User.query.filter_by(username=session.get("user",None)).first()#find the user matching the current username of the logged in user
+    score4 = user_object.score4#get the current score of the logged in user
+
+    if score4 is None:#submit the new score if one isn't already set
+        stmt = update(User).where(User.username == session.get("user",None)).values(score4=submitScore)
+        db.session.execute(stmt)
+        db.session.commit()
+
+    if submitScore > score4:#submit the new score if it is higher than the one already set
+        stmt = update(User).where(User.username == session.get("user",None)).values(score4=submitScore)
+        db.session.execute(stmt)
+        db.session.commit()
+
+
+    return redirect(url_for('space'))#redirect back to space invaders
+
 
 @app.route("/asteroids")
 def asteroids():
-    return render_template("asteroids.html")
+    score3 = db.session.query(func.max(User.score3)).scalar()
+    return render_template("asteroids.html",score3 = score3)
+
+@app.route("/asteroids/<score>")
+def submit_score_3(score):
+    submitScore = int(score)#represents the score we submitted
+
+    user_object = User.query.filter_by(username=session.get("user",None)).first()#find the user matching the current username of the logged in user
+    score3 = user_object.score3#get the current score of the logged in user
+
+    if score3 is None:#submit the new score if one isn't already set
+        stmt = update(User).where(User.username == session.get("user",None)).values(score3=submitScore)
+        db.session.execute(stmt)
+        db.session.commit()
+
+    if submitScore > score3:#submit the new score if it is higher than the one already set
+        stmt = update(User).where(User.username == session.get("user",None)).values(score3=submitScore)
+        db.session.execute(stmt)
+        db.session.commit()
+
+
+    return redirect(url_for('asteroids'))#redirect back to snake
+
 
 
 
@@ -111,11 +167,23 @@ def login():
 
         session["user"]=login_form.username.data
         #data.userId = login_form.username.data#save our username for usage later
-        return session.get("user",None)
+        return redirect(url_for('home'))
 
 
 
     return render_template("login.html", form=login_form)
+
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
+@app.route("/highscores")
+def highscores():
+    score1 = db.session.query(func.max(User.score2)).scalar()
+    score2 = db.session.query(func.max(User.score1)).scalar()
+    score3 = db.session.query(func.max(User.score4)).scalar()
+    score4 = db.session.query(func.max(User.score3)).scalar()
+    return render_template("highscores.html",score1 = score1,score2 = score2,score3 = score3,score4 = score4)
 
 # This is for command line testing
 if __name__ == "__main__":
