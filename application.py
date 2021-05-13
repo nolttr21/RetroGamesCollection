@@ -17,7 +17,7 @@ from wtform_fields import *
 app = Flask(__name__)
 app.secret_key = 'replace later'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://iznerdudsjpzzf:1982cda9506d2b73e304721096531e417eaa77e34c29c3738fa7e6a869397fc6@ec2-52-23-45-36.compute-1.amazonaws.com:5432/dbk31e5m8oor8i'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(DATABASE_URL)
 db = SQLAlchemy(app)
 
 
@@ -188,5 +188,5 @@ def highscores():
     return render_template("highscores.html",score1 = score1,score2 = score2,score3 = score3,score4 = score4)
 
 # This is for command line testing
-#if __name__ == "__main__":
-#    app.run()
+if __name__ == "__main__":
+    app.run()
