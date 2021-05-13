@@ -10,11 +10,12 @@
     <body>
       <div class = 'flex'>
       <h1 class='title'>Duck Hunt</h1>
-      <input class="highscores" type="button" onclick="location.href='highscores.html'" value="Highscores"/>
-      <input class="gameselect" type="button" onclick="location.href='home.html'" value="Game-Select"/>
+      <input class="highscores" type="button" onclick="location.href='highscores'" value="Highscores"/>
+      <input class="gameselect" type="button" onclick="location.href='home'" value="Game-Select"/>
       </div>
       <hr>
       <br>
+      
         <div class='game-container'>
             <div class='fly-area'>
                 <img class='duck red' src='../static/images/duck.png'>
@@ -28,7 +29,7 @@
             <img class='tree' src='../static/images/tree.png'>
             <img class='grass' src='../static/images/grass.png'>
             <p class='round ui'>Round: <span class='round-value'>1</span></p>
-            <p class='high-score ui'>High Score: <span class='high-score-value'>0</span></p>
+            <p class='high-score ui'>Global High Score: <span class='high-score-value'>{{score1}}</span></p>
             <p class='score ui'>Score: <span class='score-value'>0</span></p>
             <p class='win ui'>Round passed!</p>
             <button class='next-round ui'>Next Round</button>

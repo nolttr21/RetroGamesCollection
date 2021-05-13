@@ -8,8 +8,8 @@
   <body>
     <div class = 'flex'>
     <h1 class='title'>Snake</h1>
-    <input class="highscores" type="button" onclick="location.href='highscores.html'" value="Highscores"/>
-    <input class="gameselect" type="button" onclick="location.href='home.html'" value="Game-Select"/>
+    <input class="highscores" type="button" onclick="location.href='highscores'" value="Highscores"/>
+    <input class="gameselect" type="button" onclick="location.href='home'" value="Game-Select"/>
     </div>
     <hr>
     <br>
@@ -30,8 +30,8 @@
             <p class='score'> 0</p>
           </div>
           <div class='highscore'>
-            <p>High Score:</p>
-            <p class='high-score'> 0</p>
+            <p>Global High Score:</p>
+            <p class='high-score'> {{score2}}</p>
           </div>
         </div>
         <button class='reset-game'>Play Again</button>
