@@ -1,2 +1,1 @@
-web: python classifier/application.py
-
+web: gunicorn wsgi:app
