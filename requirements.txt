@@ -27,7 +27,6 @@ PyMySQL==1.0.2
 python-dateutil==2.8.1
 python-editor==1.0.4
 six==1.15.0
-SQLAlchemy==1.4.8
 stevedore==3.3.0
 virtualenv==20.4.3
 virtualenv-clone==0.5.4
